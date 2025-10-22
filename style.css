@@ -5,131 +5,102 @@
 
 body {
   margin: 0;
-  height: 100vh;
-  background: #000; /* tylko czarne tło */
-  overflow: hidden;
+  padding: 0;
+  background-color: black;
+  color: white;
   font-family: 'PixelFont', monospace;
-  color: #fff;
-  position: relative;
+  overflow: hidden;
 }
 
-/* === CIEMNA WARSTWA NA TLE === */
-body::before {
-  content: "";
+.menu-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.game-title {
+  font-size: 64px;
+  margin-bottom: 50px;
+  text-shadow: 0 0 10px #fff;
+}
+
+.chapter-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.chapter-btn {
+  background: none;
+  border: 2px solid white;
+  color: white;
+  font-size: 28px;
+  padding: 10px 40px;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 15px;
+}
+
+.chapter-btn:hover {
+  background: white;
+  color: black;
+}
+
+.character-box {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.menu-character {
+  width: 120px;
+  height: auto;
+}
+
+.character-text {
+  font-size: 22px;
+}
+
+/* === LOADING SCREEN === */
+.loading-screen {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  z-index: 0;
-  pointer-events: none;
-}
-
-/* === KONTEJNER === */
-.game-container {
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  position: relative;
-  transition: transform 0.1s ease-out;
-  z-index: 1;
-}
-
-/* === TYTUŁ === */
-.title {
-  font-size: 72px;
-  margin-top: 15vh;
+  background: black;
   color: white;
-  letter-spacing: 4px;
-  text-shadow:
-    0 0 8px #fff,
-    0 0 16px #fff,
-    0 0 32px #ccc;
-  position: relative;
-  animation: flicker 4s infinite;
-}
-
-@keyframes flicker {
-  0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
-  20%, 24%, 55% { opacity: 0.8; }
-}
-
-/* === ISKRY === */
-.sparks {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 3px;
-  height: 6px;
-  background: white;
-  border-radius: 50%;
-  opacity: 0;
-  box-shadow: 0 0 10px #fff, 0 0 30px #fff;
-  animation: sparks 5s infinite;
-}
-
-@keyframes sparks {
-  0%, 100% { opacity: 0; }
-  10% { opacity: 1; transform: translate(-50px, -40px) scale(1.2); }
-  12% { opacity: 0; }
-  40% { opacity: 1; transform: translate(40px, 30px) scale(1.3); }
-  42% { opacity: 0; }
-}
-
-/* === PRZYCISKI === */
-.pixel-button {
-  font-family: 'PixelFont', monospace;
-  color: white;
-  background: transparent;
-  border: 4px solid white;
-  font-size: 24px;
-  padding: 12px 40px;
-  margin: 10px auto;
-  display: block;
-  cursor: pointer;
-  text-shadow: 0 0 10px #fff;
-  transition: all 0.2s;
-}
-
-.pixel-button:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: scale(1.05);
-}
-
-/* === FOOTER === */
-.footer {
-  position: absolute;
-  bottom: 200px;
-  left: 50%;
-  transform: translateX(-50%);
   display: flex;
   align-items: center;
-  gap: 40px;
-  background: rgba(255, 255, 255, 0.08);
-  padding: 15px 25px;
-  border-radius: 10px;
-}
-
-.player-box img {
-  width: 128px;
-  height: 128px;
-  object-fit: contain;
-  image-rendering: pixelated;
-}
-
-.custom-text {
-  font-size: 22px;
-  text-shadow: 0 0 6px rgba(255,255,255,0.5);
-}
-
-.hidden { display: none; }
-
-.subtitle {
+  justify-content: center;
   font-size: 48px;
-  text-shadow: 0 0 8px #fff;
+  letter-spacing: 5px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+  z-index: 999;
 }
 
-.chapter-buttons {
-  margin-top: 40px;
+.loading-screen.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@keyframes loadingDots {
+  0% { content: ""; }
+  25% { content: "."; }
+  50% { content: ".."; }
+  75% { content: "..."; }
+  100% { content: ""; }
+}
+
+.loading-text::after {
+  content: "";
+  animation: loadingDots 1.5s infinite;
 }
