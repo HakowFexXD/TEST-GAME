@@ -3,44 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TEST GAME</title>
+  <title>Menu</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="game-container" id="gameContainer">
-
-    <!-- === MENU GŁÓWNE === -->
-    <div class="menu" id="mainMenu">
-      <h1 class="title">TEST GAME<span class="sparks"></span></h1>
-      <div class="buttons">
-        <button class="pixel-button" id="playBtn">PLAY</button>
-        <button class="pixel-button">SETTINGS</button>
-      </div>
+  <div class="menu-container">
+    <h1 class="game-title">TEST GAME</h1>
+    <div class="chapter-list">
+      <button class="chapter-btn" id="chapter1">CHAPTER 1</button>
+      <button class="chapter-btn">CHAPTER 2</button>
+      <button class="chapter-btn">CHAPTER 3</button>
     </div>
 
-    <!-- === EKRAN CHAPTERÓW === -->
-    <div class="chapters hidden" id="chapters">
-      <div class="sparks-top"></div>
-      <h2 class="subtitle">CHOOSE CHAPTER</h2>
-      <div class="chapter-buttons">
-        <button class="pixel-button" id="chapter1Btn">CHAPTER 1</button>
-        <button class="pixel-button">CHAPTER 2</button>
-        <button class="pixel-button">CHAPTER 3</button>
-        <button class="pixel-button">CHAPTER 4</button>
-        <button class="pixel-button" id="backBtn">BACK</button>
-      </div>
+    <div class="character-box">
+      <img src="Assets/character.png" alt="Character" class="menu-character" />
+      <p class="character-text">Welcome back, Player...</p>
     </div>
+  </div>
 
-    <!-- === STOPKA === -->
-    <div class="footer" id="footer">
-      <div class="custom-text">
-        THIS IS TESTING GAME, SO DON'T EXPECT TO SEE EVERYTHING HERE. THANKS!
-      </div>
-      <div class="player-box">
-        <img src="Assets/menu.gif" alt="Player" />
-      </div>
-    </div>
-
+  <!-- Ekran LOADING -->
+  <div class="loading-screen" id="loadingScreen">
+    <div class="loading-text" id="loadingText">LOADING</div>
   </div>
 
   <script src="script.js"></script>
