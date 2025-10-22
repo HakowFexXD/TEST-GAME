@@ -32,21 +32,17 @@ chapter1Btn.addEventListener('click', () => {
   const overlay = document.createElement('div');
   overlay.classList.add('loading-overlay');
 
-  const loading = document.createElement('div');
-  loading.classList.add('loading-text');
-  loading.textContent = 'LOADING';
-  overlay.appendChild(loading);
+const chapter1Btn = document.getElementById("chapter1");
+const loadingScreen = document.getElementById("loadingScreen");
 
-  document.body.appendChild(overlay);
+chapter1Btn.addEventListener("click", () => {
+  // Pokaż ekran ładowania
+  loadingScreen.classList.add("active");
 
-  let dots = 0;
-  const dotInterval = setInterval(() => {
-    dots = (dots + 1) % 4;
-    loading.textContent = 'LOADING' + '.'.repeat(dots);
-  }, 500);
-
+  // Poczekaj 2 sekundy, potem przejdź dalej
   setTimeout(() => {
-    clearInterval(dotInterval);
-    window.location.href = 'chapter1.html';
+    window.location.href = "chapter1.html";
   }, 2000);
 });
+
+
