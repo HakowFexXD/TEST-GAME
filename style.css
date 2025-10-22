@@ -34,12 +34,16 @@ body::before {
   position: relative;
   transition: transform 0.1s ease-out;
   z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* dodatkowo centruje dzieci */
+  flex-direction: column;
 }
 
 /* === TYTUŁ === */
 .title {
-  font-size: 72px;
-  margin-top: 15vh;
+  font-size: 96px; /* większy tytuł */
+  margin: 0;       /* usuń górny margines */
   color: white;
   letter-spacing: 4px;
   text-shadow:
@@ -83,9 +87,9 @@ body::before {
   color: white;
   background: transparent;
   border: 4px solid white;
-  font-size: 24px;
-  padding: 12px 40px;
-  margin: 10px auto;
+  font-size: 32px;      /* większe przyciski */
+  padding: 16px 60px;   /* więcej miejsca w przyciskach */
+  margin: 15px auto;    /* większy odstęp między przyciskami */
   display: block;
   cursor: pointer;
   text-shadow: 0 0 10px #fff;
@@ -171,4 +175,15 @@ body::before {
   content: "";
   animation: loadingDots 1.5s infinite;
 }
+
+.menu {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* dokładnie centruje */
+  text-align: center;
+  z-index: 1;
+}
+
+
 
