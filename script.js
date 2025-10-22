@@ -14,10 +14,17 @@ const footer = document.getElementById('footer');
 const loadingScreen = document.getElementById('loadingScreen');
 
 // === PLAY ===
-playBtn.addEventListener('click', () => {
-  mainMenu.classList.add('hidden');
-  chapters.classList.remove('hidden');
-  footer.classList.add('hidden');
+document.addEventListener('DOMContentLoaded', () => {
+  const playBtn = document.getElementById('playBtn');
+  const mainMenu = document.getElementById('mainMenu');
+  const chapters = document.getElementById('chapters');
+  const footer = document.getElementById('footer');
+
+  playBtn.addEventListener('click', () => {
+    mainMenu.classList.add('hidden');
+    chapters.classList.remove('hidden');
+    footer.classList.add('hidden');
+  });
 });
 
 // === BACK ===
@@ -47,3 +54,4 @@ chapterButtons.forEach(btn => {
     }, 2000);
   });
 });
+
