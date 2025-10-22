@@ -1,18 +1,26 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chapter 1</title>
-  <link rel="stylesheet" href="stylechapter1.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CHAPTER 1</title>
+  <link rel="stylesheet" href="stylechapter1.css" />
 </head>
 <body>
   <div class="chapter-container">
-    <img src="Assets/character.png" alt="Postać" class="character" />
-    <img src="Assets/lamp.png" alt="Lampa" class="lamp" />
+    <!-- Postać -->
+    <img src="Assets/character.png" alt="Character" class="character" />
 
-    <div class="dialogue-box">
-      <p id="dialogue-text"></p>
+    <!-- Ramka dialogowa -->
+    <div class="dialog-box">
+      <div class="character-name">TEST CHARACTER</div>
+      <div class="dialog-text" id="dialogText"></div>
+      <div class="next-arrow" id="nextArrow">▶</div>
+    </div>
+
+    <!-- Ekran końcowy -->
+    <div class="overlay" id="overlay">
+      <div class="chapter-end">CHAPTER 1 IN WORK</div>
     </div>
   </div>
 
