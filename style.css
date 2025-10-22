@@ -133,3 +133,42 @@ body::before {
 .chapter-buttons {
   margin-top: 40px;
 }
+
+/* === LOADING SCREEN === */
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  letter-spacing: 5px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+  z-index: 999;
+}
+
+.loading-screen.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@keyframes loadingDots {
+  0% { content: ""; }
+  25% { content: "."; }
+  50% { content: ".."; }
+  75% { content: "..."; }
+  100% { content: ""; }
+}
+
+.loading-text::after {
+  content: "";
+  animation: loadingDots 1.5s infinite;
+}
+
