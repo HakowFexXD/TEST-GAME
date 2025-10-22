@@ -1,64 +1,68 @@
-const dialogues = [
-  "Gdzie ja jestem...?",
-  "Wszystko wygląda inaczej niż pamiętam...",
-  "To miejsce... wydaje się znajome.",
-  "Muszę iść dalej, może znajdę jakieś wskazówki.",
-  "Ale najpierw... powinienem się rozejrzeć.",
-  "CHAPTER 1 IN WORK"
+const dialogs = [
+  "Oh hey.",
+  "........",
+  "It seem you are curious about whole story here huh?",
+  ".........",
+  "I guess you try to see the WHOLE story"
 ];
 
-const textElement = document.getElementById("dialogue-text");
-const dialogueBox = document.querySelector(".dialogue-box");
-
-let dialogueIndex = 0;
-let charIndex = 0;
-let isSkipping = false;
+let currentDialog = 0;
 let isTyping = false;
+let textIndex = 0;
+let skipMode = false;
 
-// === FUNKCJA PISANIA TEKSTU ===
-function typeDialogue() {
+const dialogText = document.getElementById("dialogText");
+const nextArrow = document.getElementById("nextArrow");
+const overlay = document.getElementById("overlay");
+
+// === Funkcja wypisywania liter po kolei ===
+function typeDialog(text) {
   isTyping = true;
-  const text = dialogues[dialogueIndex];
-  const speed = isSkipping ? 10 : 40; // szybciej gdy Shift
+  textIndex = 0;
+  dialogText.textContent = "";
 
-  if (charIndex < text.length) {
-    textElement.textContent += text.charAt(charIndex);
-    charIndex++;
-    setTimeout(typeDialogue, speed);
+  const speed = skipMode ? 15 : 45;
+  const interval = setInterval(() => {
+    dialogText.textContent = text.slice(0, textIndex);
+    textIndex++;
+
+    if (textIndex > text.length) {
+      clearInterval(interval);
+      isTyping = false;
+    }
+  }, speed);
+}
+
+// === Następny dialog ===
+function nextDialog() {
+  if (isTyping) return;
+  currentDialog++;
+
+  if (currentDialog < dialogs.length) {
+    typeDialog(dialogs[currentDialog]);
   } else {
-    isTyping = false;
+    // === KONIEC CHAPTERU ===
+    overlay.classList.add("active");
   }
 }
 
-// === FUNKCJA NASTĘPNEGO TEKSTU ===
-function nextDialogue() {
-  if (isTyping) return; // nie przeskakuj w trakcie pisania
+// === Start ===
+typeDialog(dialogs[0]);
 
-  dialogueIndex++;
-  if (dialogueIndex < dialogues.length) {
-    textElement.textContent = "";
-    charIndex = 0;
-    typeDialogue();
-  } else {
-    // KONIEC ROZDZIAŁU
-    dialogueBox.remove();
-    const endText = document.createElement("div");
-    endText.classList.add("chapter-end");
-    endText.textContent = "CHAPTER 1 IN WORK";
-    document.body.appendChild(endText);
-  }
-}
-
-// === START ===
-typeDialogue();
-
-// === KLIK = następny tekst ===
-document.addEventListener("click", nextDialogue);
-
-// === SHIFT = skip przyspieszony ===
+// === Obsługa klawiszy ===
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Shift") isSkipping = true;
+  if (e.key === "Enter") {
+    nextDialog();
+  } else if (e.key === "Shift") {
+    skipMode = true;
+  }
 });
+
 document.addEventListener("keyup", (e) => {
-  if (e.key === "Shift") isSkipping = false;
+  if (e.key === "Shift") {
+    skipMode = false;
+  }
 });
+
+// === Kliknięcie w strzałkę ===
+nextArrow.addEventListener("click", nextDialog);
