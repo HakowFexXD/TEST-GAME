@@ -12,6 +12,7 @@ const chapters = document.getElementById('chapters');
 const backBtn = document.getElementById('backBtn');
 const footer = document.getElementById('footer');
 const chapter1Btn = document.getElementById('chapter1Btn');
+const loadingScreen = document.getElementById('loadingScreen');
 
 // === PLAY ===
 playBtn.addEventListener('click', () => {
@@ -29,20 +30,15 @@ backBtn.addEventListener('click', () => {
 
 // === CHAPTER 1 ===
 chapter1Btn.addEventListener('click', () => {
-  const overlay = document.createElement('div');
-  overlay.classList.add('loading-overlay');
-
-const chapter1Btn = document.getElementById("chapter1");
-const loadingScreen = document.getElementById("loadingScreen");
-
-chapter1Btn.addEventListener("click", () => {
   // Pokaż ekran ładowania
-  loadingScreen.classList.add("active");
+  loadingScreen.classList.add('active');
 
-  // Poczekaj 2 sekundy, potem przejdź dalej
+  // Opcjonalnie schowaj menu i footer
+  chapters.classList.add('hidden');
+  footer.classList.add('hidden');
+
+  // Poczekaj 2 sekundy, potem przejdź do chapter1.html
   setTimeout(() => {
     window.location.href = "chapter1.html";
   }, 2000);
 });
-
-
