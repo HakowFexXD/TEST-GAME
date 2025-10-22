@@ -11,7 +11,6 @@ const mainMenu = document.getElementById('mainMenu');
 const chapters = document.getElementById('chapters');
 const backBtn = document.getElementById('backBtn');
 const footer = document.getElementById('footer');
-const chapter1Btn = document.getElementById('chapter1Btn');
 const loadingScreen = document.getElementById('loadingScreen');
 
 // === PLAY ===
@@ -28,17 +27,23 @@ backBtn.addEventListener('click', () => {
   footer.classList.remove('hidden');
 });
 
-// === CHAPTER 1 ===
-chapter1Btn.addEventListener('click', () => {
-  // Pokaż ekran ładowania
-  loadingScreen.classList.add('active');
+// === WSZYSTKIE PRZYCISKI CHAPTERÓW ===
+const chapterButtons = document.querySelectorAll('.chapter-buttons .pixel-button[data-target]');
 
-  // Opcjonalnie schowaj menu i footer
-  chapters.classList.add('hidden');
-  footer.classList.add('hidden');
+chapterButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const targetPage = btn.dataset.target;
 
-  // Poczekaj 2 sekundy, potem przejdź do chapter1.html
-  setTimeout(() => {
-    window.location.href = "chapter1.html";
-  }, 2000);
+    // Pokaż ekran ładowania
+    loadingScreen.classList.add('active');
+
+    // Schowaj menu i footer
+    chapters.classList.add('hidden');
+    footer.classList.add('hidden');
+
+    // Po 2 sekundach przejdź do odpowiedniej strony
+    setTimeout(() => {
+      window.location.href = targetPage;
+    }, 2000);
+  });
 });
