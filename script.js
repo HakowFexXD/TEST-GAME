@@ -1,4 +1,3 @@
-// === PŁYNNY RUCH EKRANU ===
 const gameContainer = document.getElementById('gameContainer');
 document.addEventListener('mousemove', (e) => {
   const x = (e.clientX / window.innerWidth - 0.5) * 10;
@@ -14,20 +13,21 @@ const backBtn = document.getElementById('backBtn');
 const footer = document.getElementById('footer');
 const chapter1Btn = document.getElementById('chapter1Btn');
 
-// === PRZYCISKI ===
+// === PLAY ===
 playBtn.addEventListener('click', () => {
   mainMenu.classList.add('hidden');
   chapters.classList.remove('hidden');
   footer.classList.add('hidden');
 });
 
+// === BACK ===
 backBtn.addEventListener('click', () => {
   chapters.classList.add('hidden');
   mainMenu.classList.remove('hidden');
   footer.classList.remove('hidden');
 });
 
-// === LOADING PO KLIKNIĘCIU CHAPTER 1 ===
+// === CHAPTER 1 ===
 chapter1Btn.addEventListener('click', () => {
   const overlay = document.createElement('div');
   overlay.classList.add('loading-overlay');
@@ -36,6 +36,7 @@ chapter1Btn.addEventListener('click', () => {
   loading.classList.add('loading-text');
   loading.textContent = 'LOADING';
   overlay.appendChild(loading);
+
   document.body.appendChild(overlay);
 
   let dots = 0;
